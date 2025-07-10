@@ -3,7 +3,6 @@ from typing import List
 
 class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
-        valid_triplets = []
         has_appeared = [False, False, False]
 
         for triplet in triplets:

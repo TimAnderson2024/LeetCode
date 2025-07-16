@@ -2,22 +2,15 @@ class Solution:
     def longestPalindrome(self, s: str) -> str:
         max_palindrome = ""
         for i, char in enumerate(s):
-            if i > 0 and s[i - 1] == char:
-                left_even = self.find_radius(s, i - 1, i)
-                max_palindrome = (
-                    left_even
-                    if len(left_even) > len(max_palindrome)
-                    else max_palindrome
-                )
+            # Test for even-length palindrome
             if i < len(s) - 1 and s[i + 1] == char:
-                right_even = self.find_radius(s, i, i + 1)
-                max_palindrome = (
-                    right_even
-                    if len(right_even) > len(max_palindrome)
-                    else max_palindrome
-                )
+                even = self.find_radius(s, i, i + 1)
+                if len(even) > len(max_palindrome):
+                    max_palindrome = even
+            # Test for odd-length palindrome
             odd = self.find_radius(s, i, i)
-            max_palindrome = odd if len(odd) > len(max_palindrome) else max_palindrome
+            if len(odd) > len(max_palindrome):
+                max_palindrome = odd
         return max_palindrome
 
     def find_radius(self, s, center_lb, center_rb):

@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
         cache = {}
@@ -12,8 +15,8 @@ class Solution:
             for coin in coins:
                 if cur_amount - coin >= 0:
                     minNumCoins = min(minNumCoins, 1 + calcChange(cur_amount - coin))
-            cache[cur_amount] = minNumCoins 
+            cache[cur_amount] = minNumCoins
             return minNumCoins
-        
+
         minCoins = calcChange(amount)
         return -1 if minCoins >= amount + 1 else minCoins
